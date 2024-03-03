@@ -27,6 +27,7 @@ public class SecurityConfig {
                     auth.requestMatchers("/welcome/**").permitAll();
                     auth.requestMatchers("/auth/**").permitAll();
                     auth.requestMatchers("/category/**").permitAll();
+                    auth.requestMatchers("/product/**").permitAll();
                     auth.requestMatchers("/admin/**").hasAuthority("YÖNETİCİ");
                     auth.anyRequest().authenticated();
                 })

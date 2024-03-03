@@ -2,6 +2,7 @@ package com.workintech.ecommerce.service;
 
 import com.workintech.ecommerce.dto.CategoryRequestDto;
 import com.workintech.ecommerce.dto.CategoryResponseDto;
+import com.workintech.ecommerce.dto.ProductResponseDto;
 import com.workintech.ecommerce.entity.Category;
 import com.workintech.ecommerce.entity.Product;
 import com.workintech.ecommerce.exception.ApiException;
@@ -59,13 +60,10 @@ public class CategoryServiceImp implements CategoryService {
 
     @Override
     public CategoryResponseDto save(Category categoryRequest) {
-        Category category=new Category();
-        category.setName(categoryRequest.getName());
-        category.setDescription(categoryRequest.getDescription());
-        categoryRequest.getProducts().forEach(product -> category.addProduct(product));
-        categoryRepository.save(category);
 
-        return ConvertCategoryAndProduct.converCategoryResponseDto(category);
+        Category savedCategory= categoryRepository.save(categoryRequest);
+
+        return ConvertCategoryAndProduct.converCategoryResponseDto(savedCategory);
     }
 
     @Override
