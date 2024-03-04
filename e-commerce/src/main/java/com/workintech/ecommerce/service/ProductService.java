@@ -15,7 +15,7 @@ public interface ProductService {
 
     public ProductResponseDto save(Long categoryId,Product product);
 
-    public ProductResponseDto update(Long id);
+    public ProductResponseDto update(Long id,Product product);
 
     public ProductResponseDto delete(Long id);
 

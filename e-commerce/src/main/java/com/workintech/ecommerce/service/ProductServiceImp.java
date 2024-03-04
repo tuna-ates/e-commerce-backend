@@ -60,11 +60,14 @@ public class ProductServiceImp implements ProductService{
     }
 
     @Override
-    public ProductResponseDto update(Long id) {
-        Product product=findByProduct(id);
-        productRepository.save(product);
+    public ProductResponseDto update(Long id,Product productRequest) {
+          Category category= categoryService.findByCategory(id);
+       Product productSaved=findByProduct(productRequest.getId());
+       productSaved.setCategory(category);
+       category.addProduct(productSaved);
+        productRepository.save(productSaved);
 
-        return ConvertCategoryAndProduct.convertProductResponseDto(product);
+        return ConvertCategoryAndProduct.convertProductResponseDto(productRequest);
     }
 
     @Override
